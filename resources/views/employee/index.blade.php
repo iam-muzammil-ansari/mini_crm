@@ -33,7 +33,7 @@
                                 <td>{{ $emp->company->name }}</td> <!-- Access company name -->
                                 <td>{{ $emp->email }}</td>
                                 <td>{{ $emp->phone }}</td>
-                                <td><img src="{{ asset('storage/' . $emp->profile_picture) }}" class="rounded-circle" width="50" height="50"></td>
+                                <td><img src=" employees/{{ $emp->profile_picture}}/getProfilePicture" class="rounded-circle" width="50" height="50"></td>
                                 <td>
                                     <a href="employees/{{ $emp->id }}/edit" class="btn btn-primary btn-small">Edit</a>
 

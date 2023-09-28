@@ -34,8 +34,12 @@ Route::get('company/{id}/edit',[App\Http\Controllers\CompanyController::class, '
 Route::put('company/{id}/update',[App\Http\Controllers\CompanyController::class, 'update']);
 Route::delete('company/{id}/delete',[App\Http\Controllers\CompanyController::class, 'destroy']);
 
+
 Route::get('employees/{id}/edit',[App\Http\Controllers\EmployeeController::class, 'edit']);
 Route::put('employees/{id}/update',[App\Http\Controllers\EmployeeController::class, 'update']);
 Route::delete('employees/{id}/delete',[App\Http\Controllers\EmployeeController::class, 'destroy']);
+Route::get('employees/{profile_picture}/getProfilePicture', [App\Http\Controllers\EmployeeController::class,'getProfilePicture']);
 
 Route::get('/payment', [App\Http\Controllers\PaymentController::class, 'index'])->name('payment');
+Route::post('/payment/checkout', [App\Http\Controllers\PaymentController::class, 'checkout'])->name('payment.checkout');
+Route::get('/payment/success', [App\Http\Controllers\PaymentController::class, 'success'])->name('payment.success');

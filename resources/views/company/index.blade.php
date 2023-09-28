@@ -24,7 +24,7 @@
                 <td>{{$com->name}}</td>
                 <td>{{$com->email}}</td>
                 <td>
-                <img src="{{ asset('storage/' . $com->logo) }}" class="rounded-circle" width="50" height="50">
+                <img src="{{ asset('storage/' . $com->logo) }}" class="rounded-circle" width="100" height="100">
                 </td>
                 <td>{{$com->website}}</td>
                 <td>

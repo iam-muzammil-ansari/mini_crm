@@ -48,11 +48,12 @@ class EmployeeController extends Controller
 
         // Handle profile picture file upload
         if ($request->hasFile('profile_picture')) {
-            $profilePicturePath = $request->file('profile_picture')->store('public');
-            $profilePicturePath = str_replace('public/', '', $profilePicturePath);
+            $profilePicturePath = $request->file('profile_picture')->store('private');
+            $profilePicturePath = str_replace('private/', '', $profilePicturePath);
         } else {
             $profilePicturePath = null;
         }
+
 
         // Create a new employee
         $employee = new Employee;
@@ -66,6 +67,19 @@ class EmployeeController extends Controller
         $employee->save();
 
         return back()->withSuccess('Employee Posted!!!!');
+    }
+    public function getProfilePicture($filename)
+    {
+        // Construct the full path to the file in the private disk
+        $path = storage_path('app/private/' . $filename);
+
+        // Check if the file exists
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        // Return the file with appropriate headers
+        return response()->file($path);
     }
 
     public function edit($id)
@@ -90,8 +104,9 @@ class EmployeeController extends Controller
         // Handle profile picture file upload
         // Handle profile picture file upload
         if ($request->hasFile('profile_picture')) {
-            $profilePicturePath = $request->file('profile_picture')->store('public');
-            $profilePicturePath = str_replace('public/', '', $profilePicturePath);
+            $profilePicturePath = $request->file('profile_picture')->store('private');
+            $profilePicturePath = str_replace('private/', '', $profilePicturePath);
+            $employee->profile_picture = $profilePicturePath;
         } else {
             $profilePicturePath = null;
         }
